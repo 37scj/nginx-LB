@@ -1,12 +1,13 @@
 #CONTEÚDO DO Dockerfile
-FROM ubuntu:18
+FROM maven:3.6.3-jdk-11-slim
 
-RUN apt-get install -y "java"
-RUN apt-get install -y git-scm
-RUN git clone  https://user:70d4b9c185df1c466ac69e255b804adab099ee1c@github.com/Prof-daniel-Fiap/api-exemplo
-RUN cd api-exemplo
-RUN mvn -Pprod
+COPY . /usr/src/myapp
+WORKDIR /usr/src/myapp	
 
-CMD "java -jar path"
+RUN cd /usr/src/myapp
+RUN mvn package
+
+
+CMD java -jar ./target/api10-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8080 

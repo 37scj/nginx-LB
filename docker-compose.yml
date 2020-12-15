@@ -1,38 +1,41 @@
 version: '3.3'
 services:
-   db:
-     image: mysql:5.7
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: someapi10
+      MYSQL_DATABASE: api10
+      MYSQL_USER: api10
+      MYSQL_PASSWORD: api10
 
-   spring1:
-     depends_on:
-       - db
-     build: .
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-       WORDPRESS_DB_NAME: wordpress
-   spring2:
-     depends_on:
-       - db
-     build: .
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-       WORDPRESS_DB_NAME: wordpress
-   loadbalance:
+  spring1:
+    depends_on:
+      - db
+    build: .
+    restart: always
+    environment:
+      api10_DB_HOST: db:3306
+      api10_DB_USER: api10
+      api10_DB_PASSWORD: api10
+      api10_DB_NAME: api10
+  spring2:
+    depends_on:
+      - db
+    build: .
+    restart: always
+    environment:
+      api10_DB_HOST: db:3306
+      api10_DB_USER: api10
+      api10_DB_PASSWORD: api10
+      api10_DB_NAME: api10
+  loadbalance:
+    depends_on:
+    - spring1
+    - spring2
     image: nginx
     ports:
       - "8000:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    command: [nginx-debug, '-g', 'daemon off;']
+    command: [ nginx-debug, '-g', 'daemon off;' ]
