@@ -1,6 +1,6 @@
 ## API10 api-exemplo docker-compose
 
-Projeto java spring boot e dockerizado. Criado container com Nginx de load balance.
+Projeto java spring boot e dockerizado. Criado container com Nginx de load balancer.
 
 para testar chamar http://localhost:8000/api/user
 
