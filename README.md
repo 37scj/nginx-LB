@@ -1,13 +1,13 @@
-"# api-exemplo" 
+### api-exemplo docker-compose
 
-##CRIAR E INICIAR OS CONTAINERS
-  docker-compose up -d
+####CRIAR E INICIAR OS CONTAINERS
+`docker-compose up -d`
 
-##PARAR OS CONTAINERS
-  docker-compose stop
+####PARAR OS CONTAINERS
+`docker-compose stop`
 
-##INICIAR OS CONTAINERS
-  docker-compose start
+####INICIAR OS CONTAINERS
+`docker-compose start`
 
-##PARAR E REMOVER OS CONTAINERS
-  docker-compose down
+####PARAR E REMOVER OS CONTAINERS
+`docker-compose down`
